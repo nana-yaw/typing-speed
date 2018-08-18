@@ -83,8 +83,6 @@ function startMatch() {
     showCurrentWord();
     //Clear input field
     wordInput.value = "";
-    //Clear message field
-    message.innerHTML = "";
     //Increase score value
     score++;
   }
