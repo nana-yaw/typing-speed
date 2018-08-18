@@ -56,7 +56,7 @@ async function getWords() {
   try {
     const data = await fetch(wordsUrl);
     const json = await data.json();
-    return json.filter(word => word.length > 3 && word.length <= 8);
+    return json.filter(word => word.length > 3 && word.length <= 6);
   } catch (e) {
     console.log(e);
   }
