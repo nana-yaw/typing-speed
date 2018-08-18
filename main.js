@@ -10,7 +10,7 @@ let diffcultyLevel = {
 };
 
 //Current Level
-let currentLevel = diffcultyLevel.meduim;
+let currentLevel = diffcultyLevel.easy;
 
 let time = currentLevel;
 let score = 0;
@@ -56,10 +56,20 @@ async function getWords() {
   try {
     const data = await fetch(wordsUrl);
     const json = await data.json();
-    return json.filter(word => word.length > 3);
+    return json.filter(word => word.length > 3 && word.length <= 8);
   } catch (e) {
     console.log(e);
   }
+}
+
+async function showCurrentWord() {
+  //Initialize the words array
+  const wordsArray = await getWords();
+  //console.log(wordsArray);
+  //Set random number for words array
+  const randIndex = Math.floor(Math.random() * wordsArray.length);
+  //Display random word to user
+  currentWord.innerHTML = wordsArray[randIndex];
 }
 
 // Start word match
@@ -92,15 +102,6 @@ function matchWords() {
     message.innerHTML = "";
     return false;
   }
-}
-
-async function showCurrentWord() {
-  //Initialize the words array
-  const wordsArray = await getWords();
-  //Set random number for words array
-  const randIndex = Math.floor(Math.random() * wordsArray.length);
-  //Display random word to user
-  currentWord.innerHTML = wordsArray[randIndex];
 }
 
 function countDown() {
